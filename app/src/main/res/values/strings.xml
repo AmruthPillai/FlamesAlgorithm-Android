@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Flames</string>
+
+    <string name="your_name">Your Name</string>
+    <string name="partner_name">Partner\'s Name</string>
+    <string name="caculate">Caculate</string>
+
+    <string name="FLAMES">FLAMES</string>
+</resources>
