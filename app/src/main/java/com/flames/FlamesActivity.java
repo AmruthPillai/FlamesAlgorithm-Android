@@ -1,13 +1,18 @@
 package com.flames;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -15,6 +20,7 @@ import java.text.MessageFormat;
 
 public class FlamesActivity extends AppCompatActivity {
 
+    ImageView img_flamesLogo;
     EditText edit_yourName, edit_partnerName;
     Button btn_calculate;
     TextView text_flamesResult;
@@ -25,11 +31,14 @@ public class FlamesActivity extends AppCompatActivity {
     String yourName, yourNameDisplay, partnerName, partnerNameDisplay, completeName;
     String[] arr_yourName, arr_partnerName, arr_completeName;
 
+    YoYo.YoYoString logoShaker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flames);
 
+        img_flamesLogo = (ImageView) findViewById(R.id.flames_logo);
         edit_yourName = (EditText) findViewById(R.id.input_your_name);
         edit_partnerName = (EditText) findViewById(R.id.input_partner_name);
         btn_calculate = (Button) findViewById(R.id.button_calculate);
@@ -41,6 +50,11 @@ public class FlamesActivity extends AppCompatActivity {
                 // Hide Soft Keyboard onClick
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow((null == getCurrentFocus()) ? null : getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                // Bounce Animation on Flames Logo
+                logoShaker = YoYo.with(Techniques.Bounce)
+                        .interpolate(new AccelerateDecelerateInterpolator())
+                        .playOn(img_flamesLogo);
 
                 resetValues();
                 processName();
