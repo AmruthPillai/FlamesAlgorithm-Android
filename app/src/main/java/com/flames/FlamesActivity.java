@@ -2,12 +2,12 @@ package com.flames;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +21,8 @@ import java.text.MessageFormat;
 public class FlamesActivity extends AppCompatActivity {
 
     ImageView img_flamesLogo;
-    EditText edit_yourName, edit_partnerName;
+    TextInputLayout layout_yourName, layout_partnerName;
+    TextInputEditText edit_yourName, edit_partnerName;
     Button btn_calculate;
     TextView text_flamesResult;
 
@@ -39,8 +40,13 @@ public class FlamesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flames);
 
         img_flamesLogo = (ImageView) findViewById(R.id.flames_logo);
-        edit_yourName = (EditText) findViewById(R.id.input_your_name);
-        edit_partnerName = (EditText) findViewById(R.id.input_partner_name);
+
+        layout_yourName = (TextInputLayout) findViewById(R.id.input_layout_your_name);
+        layout_partnerName = (TextInputLayout) findViewById(R.id.input_layout_partner_name);
+
+        edit_yourName = (TextInputEditText) findViewById(R.id.input_your_name);
+        edit_partnerName = (TextInputEditText) findViewById(R.id.input_partner_name);
+
         btn_calculate = (Button) findViewById(R.id.button_calculate);
         text_flamesResult = (TextView) findViewById(R.id.text_flames_result);
 
@@ -53,10 +59,13 @@ public class FlamesActivity extends AppCompatActivity {
 
                 // Bounce Animation on Flames Logo
                 logoShaker = YoYo.with(Techniques.Bounce)
-                        .interpolate(new AccelerateDecelerateInterpolator())
                         .playOn(img_flamesLogo);
 
                 resetValues();
+
+                if (edit_yourName.getText().toString().trim().isEmpty()) return;
+                if (edit_partnerName.getText().toString().trim().isEmpty()) return;
+
                 processName();
                 eliminateCommonLetters();
                 flamesCalculator();
@@ -68,6 +77,7 @@ public class FlamesActivity extends AppCompatActivity {
     public void resetValues() {
         FLAMES = getString(R.string.FLAMES);
         arr_FLAMES = FLAMES.toCharArray();
+        text_flamesResult.setText("");
     }
 
     public void processName() {

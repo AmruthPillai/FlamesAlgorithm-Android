@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Flames</string>
 
-    <string name="your_name">Your Name</string>
-    <string name="partner_name">Partner\'s Name</string>
-    <string name="caculate">Caculate</string>
+    <string name="hint_your_name">Your Name</string>
+    <string name="hint_partner_name">Partner\'s Name</string>
+    <string name="btn_caculate">Caculate</string>
+
+    <string name="err_enter_name">Error, please enter a name!</string>
 
     <string name="FLAMES">FLAMES</string>
 </resources>
