@@ -32,7 +32,7 @@ public class FlamesActivity extends AppCompatActivity {
     String yourName, yourNameDisplay, partnerName, partnerNameDisplay, completeName;
     String[] arr_yourName, arr_partnerName, arr_completeName;
 
-    YoYo.YoYoString logoShaker;
+    YoYo.YoYoString logoAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class FlamesActivity extends AppCompatActivity {
                 inputMethodManager.hideSoftInputFromWindow((null == getCurrentFocus()) ? null : getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 // Bounce Animation on Flames Logo
-                logoShaker = YoYo.with(Techniques.Bounce)
+                logoAnimator = YoYo.with(Techniques.Bounce)
                         .playOn(img_flamesLogo);
 
                 resetValues();
